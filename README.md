@@ -128,8 +128,8 @@ const retriever = await vectorStore.asRetriever({
 const retrieverOutput = await retriever.getRelevantDocuments("Hello world");
 console.log(retrieverOutput);
 await client.close();
-```
 
+```
 These code snippets provide instructions and examples for setting up LangChain.js with MongoDB Atlas as a vector store for similarity and maximal marginal relevance (MMR) search.
 
 API Reference:
