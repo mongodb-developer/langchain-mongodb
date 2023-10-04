@@ -137,5 +137,6 @@ These code snippets provide instructions and examples for setting up LangChain.j
 
 API Reference:
 [Langchain Embeddings](https://python.langchain.com/docs/modules/data_connection/text_embedding/)
+
 [MongoDB Vector Search](https://js.langchain.com/docs/api/vectorstores_mongodb_atlas/classes/MongoDBAtlasVectorSearch)
 
