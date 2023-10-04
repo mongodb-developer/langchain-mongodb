@@ -111,8 +111,8 @@ const resultOne = await vectorStore.maxMarginalRelevanceSearch("Hello world", {
   fetchK: 20, // The number of documents to return on the initial fetch
 });
 console.log(resultOne);
-
 ```
+
 // Using MMR in a vector store retriever
 
 ```
