@@ -108,6 +108,7 @@ const vectorStore = new MongoDBAtlasVectorSearch(new CohereEmbeddings(), {
 });
 
 ```
+```
 const resultOne = await vectorStore.maxMarginalRelevanceSearch("Hello world", {
   k: 4,
   fetchK: 20, // The number of documents to return on the initial fetch
