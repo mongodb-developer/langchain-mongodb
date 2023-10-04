@@ -1,6 +1,6 @@
 <img src="https://webimages.mongodb.com/_com_assets/cms/lmasvfr5imbft2sbf-LangChain_Workmark_Color%201.svg?auto=format%252Ccompress" alt="LangChain Logo" width="50%" />
 
-Setup and Installation
+Setup and Installation (this is all nodejs so grab that if you don't have it installed)
 
 First, add the Node MongoDB SDK to your project using one of the package managers:
 
