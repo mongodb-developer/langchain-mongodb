@@ -1,4 +1,4 @@
-🦜🦜🦜
+![LangChain Logo](https://webimages.mongodb.com/_com_assets/cms/lmasvfr5imbft2sbf-LangChain_Workmark_Color%201.svg?auto=format%252Ccompress)
 
 Setup and Installation
 First, add the Node MongoDB SDK to your project using one of the package managers:
