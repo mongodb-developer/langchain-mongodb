@@ -59,6 +59,7 @@ await MongoDBAtlasVectorSearch.fromTexts(
 );
 
 await client.close();
+```
 
 Usage: Similarity Search
 
