@@ -1,15 +1,15 @@
 Setup and Installation
 Install the Node MongoDB SDK in your project:
 
-sh
-Copy code
+```
 npm install -S mongodb
+
+```
 Create a MongoDB Atlas cluster by signing up on the MongoDB Atlas website. Create and name a cluster, and select or create a collection within the cluster.
 
 Create an index on the collection field you want to search over. This index should specify the dimensions of the embeddings you are using, similarity type, and field names.
 
-json
-Copy code
+```
 {
   "mappings": {
     "fields": {
@@ -23,9 +23,10 @@ Copy code
     }
   }
 }
+```
 Usage: Ingestion
-javascript
-Copy code
+
+```
 import { MongoDBAtlasVectorSearch } from "langchain/vectorstores/mongodb_atlas";
 import { CohereEmbeddings } from "langchain/embeddings/cohere";
 import { MongoClient } from "mongodb";
