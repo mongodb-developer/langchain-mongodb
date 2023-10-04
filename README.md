@@ -5,8 +5,8 @@ First, add the Node MongoDB SDK to your project using one of the package manager
 
 ```
 npm install -S mongodb
-
 ```
+
 Initial Cluster Configuration
 Create a MongoDB Atlas cluster by signing up on the MongoDB Atlas website if you haven't already.
 
