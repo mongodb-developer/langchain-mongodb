@@ -137,7 +137,7 @@ await client.close();
 These code snippets provide instructions and examples for setting up LangChain.js with MongoDB Atlas as a vector store for similarity and maximal marginal relevance (MMR) search.
 
 
-[Langchain Embeddings](https://python.langchain.com/docs/modules/data_connection/text_embedding/)
+[Langchain Embeddings](https://python.langchain.com/docs/modules/data_connection/text_embedding/)  🦜
 
-[MongoDB Vector Search](https://js.langchain.com/docs/api/vectorstores_mongodb_atlas/classes/MongoDBAtlasVectorSearch)
+[MongoDB Vector Search](https://js.langchain.com/docs/api/vectorstores_mongodb_atlas/classes/MongoDBAtlasVectorSearch)  🍃
 
