@@ -84,6 +84,7 @@ const resultOne = await vectorStore.similaritySearch("Hello world", 1);
 console.log(resultOne);
 
 await client.close();
+```
 
 Usage: Maximal Marginal Relevance (MMR) Search
 
