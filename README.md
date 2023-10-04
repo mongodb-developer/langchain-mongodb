@@ -1,18 +1,23 @@
 Setup and Installation
-Install the Node MongoDB SDK in your project:
+First, add the Node MongoDB SDK to your project using one of the package managers:
 
 ```
 npm install -S mongodb
 
 ```
-Create a MongoDB Atlas cluster by signing up on the MongoDB Atlas website. Create and name a cluster, and select or create a collection within the cluster.
+Initial Cluster Configuration
+Create a MongoDB Atlas cluster by signing up on the MongoDB Atlas website if you haven't already.
 
-Create an index on the collection field you want to search over. This index should specify the dimensions of the embeddings you are using, similarity type, and field names.
+Create and name a cluster when prompted and find it under the Database section. Select Collections and create either a blank collection or use provided sample data.
+
+Creating an Index
+After configuring your cluster, create an index on the collection field you want to search over. Use the JSON editor option and add an index to the desired collection:
 
 ```
 {
   "mappings": {
     "fields": {
+      // Default value, should match the name of the field within your collection that contains embeddings
       "embedding": [
         {
           "dimensions": 1024,
@@ -24,7 +29,12 @@ Create an index on the collection field you want to search over. This index shou
   }
 }
 ```
-Usage: Ingestion
+
+The dimensions property should match the dimensionality of the embeddings you are using (e.g., Cohere embeddings have 1024 dimensions, and OpenAI embeddings have 1536).
+
+Note: By default, the vector store expects an index name of default, an indexed collection field name of embedding, and a raw text field name of text. Initialize the vector store with field names matching your collection schema as shown below.
+
+Finally, proceed to build the index.
 
 ```
 import { MongoDBAtlasVectorSearch } from "langchain/vectorstores/mongodb_atlas";
@@ -42,44 +52,67 @@ await MongoDBAtlasVectorSearch.fromTexts(
   new CohereEmbeddings(),
   {
     collection,
-    indexName: "default",
-    textKey: "text",
-    embeddingKey: "embedding"
+    indexName: "default", // The name of the Atlas search index. Defaults to "default"
+    textKey: "text", // The name of the collection field containing the raw content. Defaults to "text"
+    embeddingKey: "embedding", // The name of the collection field containing the embedded text. Defaults to "embedding"
   }
 );
 
 await client.close();
+
 Usage: Similarity Search
-javascript
-Copy code
+
+```
+import { MongoDBAtlasVectorSearch } from "langchain/vectorstores/mongodb_atlas";
+import { CohereEmbeddings } from "langchain/embeddings/cohere";
+import { MongoClient } from "mongodb";
+
+const client = new MongoClient(process.env.MONGODB_ATLAS_URI || "");
+const namespace = "langchain.test";
+const [dbName, collectionName] = namespace.split(".");
+const collection = client.db(dbName).collection(collectionName);
+
 const vectorStore = new MongoDBAtlasVectorSearch(new CohereEmbeddings(), {
   collection,
-  indexName: "default",
-  textKey: "text",
-  embeddingKey: "embedding"
+  indexName: "default", // The name of the Atlas search index. Defaults to "default"
+  textKey: "text", // The name of the collection field containing the raw content. Defaults to "text"
+  embeddingKey: "embedding", // The name of the collection field containing the embedded text. Defaults to "embedding"
 });
 
 const resultOne = await vectorStore.similaritySearch("Hello world", 1);
 console.log(resultOne);
 
 await client.close();
+
 Usage: Maximal Marginal Relevance (MMR) Search
-javascript
-Copy code
+
+```
+import { MongoDBAtlasVectorSearch } from "langchain/vectorstores/mongodb_atlas";
+import { CohereEmbeddings } from "langchain/embeddings/cohere";
+import { MongoClient } from "mongodb";
+
+const client = new MongoClient(process.env.MONGODB_ATLAS_URI || "");
+const namespace = "langchain.test";
+const [dbName, collectionName] = namespace.split(".");
+const collection = client.db(dbName).collection(collectionName);
+
 const vectorStore = new MongoDBAtlasVectorSearch(new CohereEmbeddings(), {
   collection,
-  indexName: "default",
-  textKey: "text",
-  embeddingKey: "embedding"
+  indexName: "default", // The name of the Atlas search index. Defaults to "default"
+  textKey: "text", // The name of the collection field containing the raw content. Defaults to "text"
+  embeddingKey: "embedding", // The name of the collection field containing the embedded text. Defaults to "embedding"
 });
 
+```
 const resultOne = await vectorStore.maxMarginalRelevanceSearch("Hello world", {
   k: 4,
-  fetchK: 20
+  fetchK: 20, // The number of documents to return on the initial fetch
 });
 console.log(resultOne);
 
+```
 // Using MMR in a vector store retriever
+
 const retriever = await vectorStore.asRetriever({
   searchType: "mmr",
   searchKwargs: {
@@ -88,9 +121,16 @@ const retriever = await vectorStore.asRetriever({
   },
 });
 
+```
 const retrieverOutput = await retriever.getRelevantDocuments("Hello world");
 
 console.log(retrieverOutput);
 
 await client.close();
-These code snippets demonstrate how to set up LangChain.js with MongoDB Atlas as the vector store and perform similarity and MMR searches. You need to replace specific values, such as the MongoDB Atlas URI, with your own configuration and data. Additionally, ensure that you have the required packages and modules installed in your project.
+
+```
+These code snippets provide instructions and examples for setting up LangChain.js with MongoDB Atlas as a vector store for similarity and maximal marginal relevance (MMR) search.
+
+API Reference:
+MongoDBAtlasVectorSearch from langchain/vectorstores/mongodb_atlas
+CohereEmbeddings from langchain/embeddings/cohere
