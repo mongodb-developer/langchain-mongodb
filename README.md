@@ -64,7 +64,7 @@ await MongoDBAtlasVectorSearch.fromTexts(
 await client.close();
 ```
 
-Usage: Similarity Search
+Usage: Similarity Search https://www.earthdata.nasa.gov/dashboard/labs/similarity-search/
 
 ```
 import { MongoDBAtlasVectorSearch } from "langchain/vectorstores/mongodb_atlas";
