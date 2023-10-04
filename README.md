@@ -115,6 +115,7 @@ console.log(resultOne);
 ```
 // Using MMR in a vector store retriever
 
+```
 const retriever = await vectorStore.asRetriever({
   searchType: "mmr",
   searchKwargs: {
