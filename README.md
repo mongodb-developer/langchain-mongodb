@@ -89,7 +89,7 @@ console.log(resultOne);
 await client.close();
 ```
 
-Usage: Maximal Marginal Relevance (MMR) Search (Not MaximumRocknRoll)
+Usage: Maximal Marginal Relevance (MMR) Search (Not MaximumRocknRoll) ☠️
 
 ```
 import { MongoDBAtlasVectorSearch } from "langchain/vectorstores/mongodb_atlas";
